@@ -18,7 +18,7 @@ const connectDb = () => {
 const getUsers = () => {
   return new Promise ((resolve, reject) => {
     con.query('SELECT * FROM Users', function (error, results) {
-      return error ? reject(err) : resolve(results);
+      return error ? reject(error) : resolve(results);
     });
   })
 }
@@ -26,12 +26,14 @@ const getUsers = () => {
 
 const createUsers = (type, name, lastname, tel) => {
   return new Promise((resolve, reject) => {
+    console.log (type,name,lastname,tel)
     const sql = 'INSERT INTO users (type, name, lastame, tel) VALUES ("'+type+'", "'+name+'", "'+lastname+'", "'+tel+'" )'
     con.query(sql, function(error, results) {
       return error ? reject(error) : resolve(results);
     })
   })
 }
+
 
 const getProducts = () => {
   return new Promise ((resolve, reject) => {
